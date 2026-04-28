@@ -1,2 +1,1 @@
-# My_Repo
-my rust repository 
+Percentage Income Allocator
