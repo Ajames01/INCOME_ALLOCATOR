@@ -1,75 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artist Income Allocator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.James Art Income Planner</title>
 
-        .container {
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 15px;
-            width: 350px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        h1 {
-            margin-bottom: 10px;
-        }
+    body {
+        background: #f4f6f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 15px 0;
-            border-radius: 8px;
-            border: none;
-            font-size: 16px;
-        }
+    .card {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        width: 380px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
 
-        button {
-            padding: 10px 20px;
-            border: none;
-            background: #22c55e;
-            color: white;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
+    h1 {
+        font-size: 20px;
+        margin-bottom: 5px;
+        color: #111827;
+    }
 
-        .results {
-            margin-top: 20px;
-            text-align: left;
-        }
+    .subtitle {
+        font-size: 13px;
+        color: #6b7280;
+        margin-bottom: 20px;
+    }
 
-        .results p {
-            margin: 8px 0;
-            font-size: 15px;
-        }
+    input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
+        margin-bottom: 15px;
+        font-size: 15px;
+    }
 
-        .highlight {
-            color: #22c55e;
-            font-weight: bold;
-        }
-    </style>
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #111827;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: #374151;
+    }
+
+    .results {
+        margin-top: 20px;
+    }
+
+    .result-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+        font-size: 14px;
+    }
+
+    .label {
+        color: #374151;
+    }
+
+    .value {
+        font-weight: bold;
+        color: #111827;
+    }
+</style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>💰 Income Allocator</h1>
-    <p>For Artists & Christian Stewardship</p>
+<div class="card">
+    <h1>💰 Income Planner</h1>
+    <p class="subtitle">A.James Art Financial System</p>
 
-    <input type="number" id="income" placeholder="Enter your income (₦)">
+    <input type="number" id="income" placeholder="Enter income (₦)">
     <button onclick="calculate()">Calculate</button>
 
     <div class="results" id="results"></div>
@@ -80,7 +106,7 @@ function calculate() {
     let income = document.getElementById("income").value;
 
     if (income === "" || income <= 0) {
-        alert("Please enter a valid income");
+        alert("Enter a valid income");
         return;
     }
 
@@ -89,15 +115,25 @@ function calculate() {
     let tithe = income * 0.10;
     let living = income * 0.45;
     let business = income * 0.20;
-    let savings = income * 0.15;
-    let personal = income * 0.10;
+    let savings = income * 0.25;
 
     document.getElementById("results").innerHTML = `
-        <p>🙏 Tithe (10%): <span class="highlight">₦${tithe.toFixed(2)}</span></p>
-        <p>🏠 Living Expenses (45%): <span class="highlight">₦${living.toFixed(2)}</span></p>
-        <p>🎨 Art/Business (20%): <span class="highlight">₦${business.toFixed(2)}</span></p>
-        <p>💾 Savings (15%): <span class="highlight">₦${savings.toFixed(2)}</span></p>
-        <p>🎉 Personal (10%): <span class="highlight">₦${personal.toFixed(2)}</span></p>
+        <div class="result-item">
+            <span class="label">Tithe (10%)</span>
+            <span class="value">₦${tithe.toFixed(2)}</span>
+        </div>
+        <div class="result-item">
+            <span class="label">Living Expenses (45%)</span>
+            <span class="value">₦${living.toFixed(2)}</span>
+        </div>
+        <div class="result-item">
+            <span class="label">Art/Business (20%)</span>
+            <span class="value">₦${business.toFixed(2)}</span>
+        </div>
+        <div class="result-item">
+            <span class="label">Savings (25%)</span>
+            <span class="value">₦${savings.toFixed(2)}</span>
+        </div>
     `;
 }
 </script>
