@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Income Allocator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #22c55e;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .results {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .results p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+
+        .highlight {
+            color: #22c55e;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>💰 Income Allocator</h1>
+    <p>For Artists & Christian Stewardship</p>
+
+    <input type="number" id="income" placeholder="Enter your income (₦)">
+    <button onclick="calculate()">Calculate</button>
+
+    <div class="results" id="results"></div>
+</div>
+
+<script>
+function calculate() {
+    let income = document.getElementById("income").value;
+
+    if (income === "" || income <= 0) {
+        alert("Please enter a valid income");
+        return;
+    }
+
+    income = parseFloat(income);
+
+    let tithe = income * 0.10;
+    let living = income * 0.45;
+    let business = income * 0.20;
+    let savings = income * 0.15;
+    let personal = income * 0.10;
+
+    document.getElementById("results").innerHTML = `
+        <p>🙏 Tithe (10%): <span class="highlight">₦${tithe.toFixed(2)}</span></p>
+        <p>🏠 Living Expenses (45%): <span class="highlight">₦${living.toFixed(2)}</span></p>
+        <p>🎨 Art/Business (20%): <span class="highlight">₦${business.toFixed(2)}</span></p>
+        <p>💾 Savings (15%): <span class="highlight">₦${savings.toFixed(2)}</span></p>
+        <p>🎉 Personal (10%): <span class="highlight">₦${personal.toFixed(2)}</span></p>
+    `;
+}
+</script>
+
+</body>
+</html>
